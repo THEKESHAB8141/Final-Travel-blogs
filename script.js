@@ -1,10 +1,10 @@
 // Set current year
-document.getElementById('year').textContent = new Date().getFullYear();
+const year = document.getElementById('year');
+if (year) year.textContent = new Date().getFullYear();
 
 // Mobile nav toggle
 const navToggle = document.getElementById('nav-toggle');
 const mainNav = document.getElementById('main-nav');
-
 if (navToggle) {
   navToggle.addEventListener('click', () => {
     const expanded = navToggle.getAttribute('aria-expanded') === 'true';
@@ -19,7 +19,7 @@ if (navToggle) {
   });
 }
 
-// Smooth scroll for internal links
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', function(e){
     const target = document.querySelector(this.getAttribute('href'));
@@ -30,13 +30,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Contact form demo (client side only)
+// Contact form demo
 const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = form.name?.value?.trim() || 'Friend';
-    alert(`Thanks ${name}! We've received your inquiry — we'll contact you soon.`);
+    alert(`Thanks ${name}! We received your inquiry — we'll contact you soon.`);
     form.reset();
   });
 }

@@ -10,24 +10,28 @@ body{margin:0;color:var(--text);background:var(--bg);line-height:1.5;-webkit-fon
 .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
 .skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:#000;color:#fff;padding:.5rem 1rem;border-radius:4px}
 
-.site-header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(4px);border-bottom:1px solid #eee;z-index:40}
-.site-header .wrap{display:flex;align-items:center;gap:1rem}
+.site-header{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(4px);border-bottom:1px solid #eee;z-index:40}
+.header-row{display:flex;align-items:center;gap:1rem}
 .brand{font-weight:700;text-decoration:none;color:var(--text);font-size:1.1rem}
+.site-logo{display:inline-block;vertical-align:middle;max-height:40px;height:auto;width:auto}
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
 .nav{margin-left:auto;display:flex;gap:0.6rem;align-items:center}
-.nav a{color:var(--muted);text-decoration:none;padding:.45rem .6rem;border-radius:6px;font-size:.98rem}
+.nav a{color:var(--muted);text-decoration:none;padding:.45rem .6rem;border-radius:6px}
 .nav a:hover{color:var(--text);background:#f3f4f6}
 #nav-toggle{display:none;background:none;border:0;font-size:1.25rem;margin-left:auto}
 
-.hero{min-height:54vh;background-size:cover;background-position:center;display:flex;align-items:center;color:white;position:relative}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,36,0.5),rgba(4,20,36,0.35))}
-.hero-content{position:relative;padding:3rem 1rem}
-.hero h1{font-size:2rem;margin:0 0 .5rem}
+.hero{min-height:56vh;background-size:cover;background-position:center;display:flex;align-items:center;color:white;position:relative}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,20,36,0.55),rgba(4,20,36,0.3))}
+.hero-inner{position:relative;padding:3rem 1rem;color:white;max-width:880px}
+.hero h1{font-size:2.1rem;margin:0 0 .5rem}
 .lead{margin:0 0 1rem;color:rgba(255,255,255,0.95)}
 .hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap}
 
 .btn{display:inline-block;padding:.6rem 1rem;border-radius:8px;text-decoration:none;border:1px solid transparent;font-weight:600}
 .btn.primary{background:var(--accent);color:white}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.25);color:white}
+.btn.small{padding:.35rem .6rem;font-size:.95rem}
 
 .section{padding:3rem 0}
 .section.alt{background:#f9fafb}
@@ -41,10 +45,15 @@ body{margin:0;color:var(--text);background:var(--bg);line-height:1.5;-webkit-fon
 .card-foot{display:flex;justify-content:space-between;align-items:center}
 .price{font-weight:700;color:var(--accent-2)}
 
-.two-col{display:grid;grid-template-columns:1fr 380px;gap:1.25rem;align-items:center}
-.feature-image img{width:100%;border-radius:10px;display:block}
+.intro-grid{display:grid;grid-template-columns:1fr 420px;gap:1rem;align-items:center}
+.features-list{list-style:none;padding:0;margin-top:1rem;display:grid;gap:.6rem}
+.feature-photo img{width:100%;border-radius:8px;display:block}
+
+.masonry{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.masonry img{width:100%;display:block;border-radius:6px}
 
 .reviews blockquote{background:white;padding:1rem;border-left:4px solid var(--accent);margin:0 0 1rem;border-radius:6px}
+
 .contact .form-wrap{display:grid;grid-template-columns:1fr 320px;gap:1.25rem}
 label{display:block;margin-bottom:.6rem}
 .label-text{display:block;font-size:.9rem;margin-bottom:.35rem;color:var(--muted)}
@@ -53,15 +62,5 @@ input,textarea{width:100%;padding:.6rem;border-radius:6px;border:1px solid #e6e6
 
 .site-footer{padding:1rem 0;border-top:1px solid #eee;text-align:center;color:var(--muted);font-size:.95rem}
 
-@media (max-width:1000px){
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .two-col{grid-template-columns:1fr}
-  .contact .form-wrap{grid-template-columns:1fr}
-}
-@media (max-width:700px){
-  .grid{grid-template-columns:1fr}
-  .nav{display:none}
-  #nav-toggle{display:block}
-  .hero h1{font-size:1.6rem}
-  .wrap{padding:.75rem}
-}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.intro-grid{grid-template-columns:1fr}.masonry{grid-template-columns:repeat(2,1fr)}.contact .form-wrap{grid-template-columns:1fr}}
+@media (max-width:700px){.grid{grid-template-columns:1fr}.nav{display:none}#nav-toggle{display:block}.hero h1{font-size:1.6rem}.wrap{padding:.75rem}.masonry{grid-template-columns:repeat(1,1fr)}}

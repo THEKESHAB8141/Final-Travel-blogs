@@ -3,38 +3,38 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Northeast Explorer — Curated Small-Group Tours</title>
-  <meta name="description" content="Northeast Explorer - boutique small-group tours across Northeast India. Local guides, sustainable itineraries and authentic cultural experiences." />
+  <title>Curated Trip — Handpicked journeys across Northeast India</title>
+  <meta name="description" content="Curated Trip offers curated small-group tours across Northeast India — local guides, homestays, and responsible experiences." />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "TravelAgency",
-    "name": "Northeast Explorer",
-    "url": "https://northeast-explorer.example",
-    "logo": "https://northeast-explorer.example/assets/images/hero.jpg",
-    "description": "Boutique travel company offering curated small-group tours across Northeast India.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Guwahati",
-      "addressRegion": "Assam",
-      "addressCountry": "IN"
-    },
-    "telephone": "+91-9876543210"
+    "@context":"https://schema.org",
+    "@type":"TravelAgency",
+    "name":"Curated Trip",
+    "url":"https://<your-site-url>/",
+    "logo":"https://<your-site-url>/assets/images/logo.svg",
+    "description":"Boutique travel company offering curated small-group tours across Northeast India.",
+    "email":"isthisroy@gmail.com",
+    "address":{"@type":"PostalAddress","addressLocality":"Kolkata","addressRegion":"West Bengal","addressCountry":"IN"},
+    "telephone":"+91-9876543210"
   }
   </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
   <header class="site-header" role="banner">
-    <div class="wrap">
-      <a class="brand" href="/" aria-label="Northeast Explorer home">Northeast Explorer</a>
+    <div class="wrap header-row">
+      <a class="brand" href="/">
+        <img src="assets/images/logo.svg" alt="Curated Trip" class="site-logo" width="190" height="36">
+        <span class="visually-hidden">Curated Trip</span>
+      </a>
       <nav id="main-nav" class="nav" role="navigation" aria-label="Main navigation">
         <a href="#tours">Tours</a>
         <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -43,14 +43,31 @@
   </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero" role="region" aria-label="Northeast Explorer hero" style="background-image:url('assets/images/hero.jpg')">
+    <section class="hero" role="region" aria-label="Hero" style="background-image:url('assets/images/hero.jpg')">
       <div class="hero-overlay" aria-hidden="true"></div>
-      <div class="wrap hero-content">
-        <h1>Discover the hidden gems of Northeast India</h1>
-        <p class="lead">Curated small-group tours with expert local guides — immersive, responsible, unforgettable.</p>
+      <div class="wrap hero-inner">
+        <h1>Handpicked trips across Northeast India</h1>
+        <p class="lead">Curated small-group packages • Local guides • Community-first travel</p>
         <div class="hero-ctas">
-          <a class="btn primary" href="#tours">Explore Tours</a>
-          <a class="btn ghost" href="#contact">Request a Quote</a>
+          <a class="btn primary" href="#tours">View Packages</a>
+          <a class="btn ghost" href="#contact">Request Custom Trip</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro wrap">
+      <div class="intro-grid">
+        <div>
+          <h2>Why travel with Curated Trip?</h2>
+          <p>We design immersive, responsible itineraries across the eight states of Northeast India. Small groups, expert local guides, homestays and community-led experiences ensure authentic travel that benefits local people.</p>
+          <ul class="features-list">
+            <li><strong>Small groups</strong><span>Max 12 travellers</span></li>
+            <li><strong>Local guides</strong><span>Community-led experiences</span></li>
+            <li><strong>Responsible travel</strong><span>Sustainable itineraries</span></li>
+          </ul>
+        </div>
+        <div class="feature-photo">
+          <img src="assets/images/about.jpg" alt="Local guide and travellers" loading="lazy">
         </div>
       </div>
     </section>
@@ -61,60 +78,43 @@
           <h2>Featured Tours</h2>
           <p>Handpicked itineraries — nature, culture and local experiences.</p>
         </div>
-
         <div class="grid" role="list">
-          <article class="card" role="listitem" aria-labelledby="tour-1-title">
-            <img src="assets/images/tour-meghalaya.jpg" alt="Living root bridges in Meghalaya" loading="lazy">
+          <article class="card" role="listitem" aria-labelledby="t-1">
+            <img src="assets/images/tour-meghalaya.jpg" alt="Living root bridges Meghalaya" loading="lazy">
             <div class="card-body">
-              <h3 id="tour-1-title">Meghalaya: Living Roots & Waterfalls — 6 Days</h3>
-              <p>Walk ancient living-root bridges, visit cascading waterfalls, and stay with Khasi homestays.</p>
-              <div class="card-foot">
-                <span class="price">₹24,999</span>
-                <a class="btn" href="#contact">Enquire</a>
-              </div>
+              <h3 id="t-1">Meghalaya — Living Roots & Waterfalls (6 days)</h3>
+              <p>Walk living-root bridges, waterfall treks and stay with Khasi homestays.</p>
+              <div class="card-foot"><span class="price">₹24,999</span><a class="btn" href="#contact">Enquire</a></div>
             </div>
           </article>
-
-          <article class="card" role="listitem" aria-labelledby="tour-2-title">
-            <img src="assets/images/tour-arunachal.jpg" alt="Tawang monastery in Arunachal Pradesh" loading="lazy">
+          <article class="card" role="listitem" aria-labelledby="t-2">
+            <img src="assets/images/tour-arunachal.jpg" alt="Tawang monastery Arunachal" loading="lazy">
             <div class="card-body">
-              <h3 id="tour-2-title">Tawang & Cultural Highlands — 7 Days</h3>
-              <p>Explore monasteries, high-altitude scenery and unique cultural encounters in Arunachal.</p>
-              <div class="card-foot">
-                <span class="price">₹29,999</span>
-                <a class="btn" href="#contact">Enquire</a>
-              </div>
+              <h3 id="t-2">Tawang & Cultural Highlands (7 days)</h3>
+              <p>Monasteries, scenic drives and highland culture with local guides.</p>
+              <div class="card-foot"><span class="price">₹29,999</span><a class="btn" href="#contact">Enquire</a></div>
             </div>
           </article>
-
-          <article class="card" role="listitem" aria-labelledby="tour-3-title">
-            <img src="assets/images/tour-sikkim.jpg" alt="Mountain lake in Sikkim" loading="lazy">
+          <article class="card" role="listitem" aria-labelledby="t-3">
+            <img src="assets/images/tour-sikkim.jpg" alt="Sikkim lake and mountains" loading="lazy">
             <div class="card-body">
-              <h3 id="tour-3-title">Sikkim Highlights — 5 Days</h3>
-              <p>Lakes, monasteries, mountain cuisine and scenic drives through the Himalaya foothills.</p>
-              <div class="card-foot">
-                <span class="price">₹19,999</span>
-                <a class="btn" href="#contact">Enquire</a>
-              </div>
+              <h3 id="t-3">Sikkim Highlights (5 days)</h3>
+              <p>Monasteries, lakes, mountain vistas and local cuisines.</p>
+              <div class="card-foot"><span class="price">₹19,999</span><a class="btn" href="#contact">Enquire</a></div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section alt">
-      <div class="wrap two-col">
-        <div>
-          <h2>About Northeast Explorer</h2>
-          <p>We design small-group journeys (max 12) around nature, culture and community. We partner with local guides and homestays to ensure your trip benefits local people and preserves cultural integrity.</p>
-          <ul class="features" aria-hidden="false">
-            <li>Small groups — immersive experiences</li>
-            <li>Local guides & homestays</li>
-            <li>Responsible travel & carbon-aware planning</li>
-          </ul>
-        </div>
-        <div class="feature-image">
-          <img src="assets/images/about.jpg" alt="Local guide showing travellers a village" loading="lazy">
+    <section id="gallery" class="section alt">
+      <div class="wrap">
+        <h2>Gallery</h2>
+        <div class="masonry">
+          <img src="assets/images/gallery1.jpg" alt="Waterfall" loading="lazy">
+          <img src="assets/images/gallery2.jpg" alt="Tea Gardens" loading="lazy">
+          <img src="assets/images/gallery3.jpg" alt="Monastery" loading="lazy">
+          <img src="assets/images/gallery4.jpg" alt="Village Market" loading="lazy">
         </div>
       </div>
     </section>
@@ -123,12 +123,8 @@
       <div class="wrap">
         <h2>Traveller Reviews</h2>
         <div class="reviews">
-          <blockquote>
-            "An unforgettable journey — excellent guides and immersive experiences." <cite>— Asha, Kolkata</cite>
-          </blockquote>
-          <blockquote>
-            "We loved the local homestays and carefully planned itinerary." <cite>— Tom, UK</cite>
-          </blockquote>
+          <blockquote>"An unforgettable journey — knowledgeable guides and meaningful experiences." <cite>— Asha, Delhi</cite></blockquote>
+          <blockquote>"We loved the homestays and local food — highly recommended." <cite>— Tom, UK</cite></blockquote>
         </div>
       </div>
     </section>
@@ -136,41 +132,29 @@
     <section id="contact" class="section alt contact">
       <div class="wrap form-wrap">
         <div>
-          <h2>Get in touch</h2>
-          <p>Share your dates or interests — we will craft a personalized itinerary.</p>
-          <form id="contact-form" action="#" method="post" novalidate aria-label="Contact form">
-            <label>
-              <span class="label-text">Name</span>
-              <input type="text" name="name" required aria-required="true" />
-            </label>
-            <label>
-              <span class="label-text">Email</span>
-              <input type="email" name="email" required aria-required="true" />
-            </label>
-            <label>
-              <span class="label-text">Message</span>
-              <textarea name="message" rows="4"></textarea>
-            </label>
-            <div class="form-row">
-              <button class="btn primary" type="submit">Send Inquiry</button>
-              <a class="btn ghost" href="mailto:info@northexplorer.example">Or email us</a>
-            </div>
+          <h2>Contact Us</h2>
+          <p>Tell us your travel dates and interests — we'll craft a personalized itinerary.</p>
+          <form id="contact-form" class="contact-form" action="#" method="post" novalidate>
+            <label><span class="label-text">Name</span><input type="text" name="name" required></label>
+            <label><span class="label-text">Email</span><input type="email" name="email" required></label>
+            <label><span class="label-text">Message</span><textarea name="message" rows="4"></textarea></label>
+            <div class="form-row"><button class="btn primary" type="submit">Send Inquiry</button><a class="btn ghost" href="mailto:isthisroy@gmail.com">Or email us</a></div>
           </form>
         </div>
-
         <aside class="contact-info" aria-label="Contact information">
           <h3>Contact</h3>
-          <p><strong>Email:</strong> info@northexplorer.example</p>
+          <p><strong>Email:</strong> isthisroy@gmail.com</p>
           <p><strong>Phone:</strong> +91 98765 43210</p>
-          <p><strong>Office:</strong> Guwahati, Assam, India</p>
+          <p><strong>Office:</strong> Kolkata, West Bengal, India</p>
         </aside>
       </div>
     </section>
   </main>
 
   <footer class="site-footer" role="contentinfo">
-    <div class="wrap">
-      <p>© <span id="year"></span> Northeast Explorer • Boutique travel across Northeast India</p>
+    <div class="wrap footer-inner">
+      <div>© <span id="year"></span> Curated Trip</div>
+      <div class="footer-links"><a href="#privacy">Privacy</a> · <a href="#terms">Terms</a></div>
     </div>
   </footer>
 
