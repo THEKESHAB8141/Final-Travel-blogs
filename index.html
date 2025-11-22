@@ -1,40 +1,139 @@
-<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><title>Curated Trip</title></head>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Northeast Explorer — Discover the Northeast</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-<!-- BOOKING_BUTTON_ADDED -->
-<div style="text-align:center; margin: 20px 0;">
-  <a href="booking.html" style="display:inline-block; padding:12px 22px; background:#0077cc; color:#fff; text-decoration:none; border-radius:6px;">Book Now</a>
-</div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">Northeast Explorer</a>
+      <nav class="nav">
+        <a href="#destinations">Destinations</a>
+        <a href="#tours">Tours</a>
+        <a href="#about">About</a>
+        <button id="enquireBtn" class="btn primary">Enquire</button>
+      </nav>
+    </div>
+  </header>
 
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Discover the Indian Northeast</h1>
+      <p>Curated trips, local guides, and unforgettable experiences.</p>
+      <div class="hero-ctas">
+        <a href="#tours" class="btn">View Tours</a>
+        <button id="heroEnquire" class="btn outline">Enquire Now</button>
+      </div>
+    </div>
+  </section>
 
-<h2>Book Your Trip</h2>
+  <main>
+    <section id="destinations" class="container cards">
+      <h2>Top Destinations</h2>
+      <div class="card-grid">
+        <article class="card">
+          <img src="assets/placeholder1.jpg" alt="Destination 1">
+          <h3>Guwahati & Kaziranga</h3>
+          <p>Wildlife, tea gardens and river cruises.</p>
+          <button class="btn enquire small">Enquire</button>
+        </article>
+        <article class="card">
+          <img src="assets/placeholder2.jpg" alt="Destination 2">
+          <h3>Shillong & Cherrapunji</h3>
+          <p>Hills, waterfalls and living root bridges.</p>
+          <button class="btn enquire small">Enquire</button>
+        </article>
+        <article class="card">
+          <img src="assets/placeholder3.jpg" alt="Destination 3">
+          <h3>Tawang Circuit</h3>
+          <p>Monasteries, high-altitude passes and scenic valleys.</p>
+          <button class="btn enquire small">Enquire</button>
+        </article>
+      </div>
+    </section>
 
-<form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" value="contact" />
+    <section id="tours" class="container about">
+      <h2>Featured Tours</h2>
+      <p>Handpicked itineraries for every traveler.</p>
+      <div class="itinerary">
+        <h3>7-day Classic Northeast</h3>
+        <ul>
+          <li>Day 1: Guwahati arrival</li>
+          <li>Day 2-3: Kaziranga Safari</li>
+          <li>Day 4-5: Shillong & Cherrapunji</li>
+          <li>Day 6-7: Local cultural experiences</li>
+        </ul>
+        <button class="btn enquire">Enquire about this tour</button>
+      </div>
+    </section>
 
-  <p style="display:none;">
-    <label>Don’t fill this out: <input name="bot-field" /></label>
-  </p>
+    <section id="about" class="container about">
+      <h2>About Us</h2>
+      <p>We are a small team passionate about responsible travel in Northeast India. Local guides, curated experiences and small-group tours.</p>
+    </section>
+  </main>
 
-  <label>Name</label>
-  <input type="text" name="name" required />
+  <!-- Booking / Enquiry Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <button id="modalClose" class="modal-close" aria-label="Close">×</button>
+      <h2>Enquire / Book</h2>
 
-  <label>Email</label>
-  <input type="email" name="email" required />
+      <!-- Netlify-ready form -->
+      <form id="bookingForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="form">
+        <input type="hidden" name="form-name" value="booking">
+        <p class="hidden"><label>Don’t fill this out if you're human: <input name="bot-field"></label></p>
 
-  <label>Phone</label>
-  <input type="text" name="phone" />
+        <label>
+          Full name
+          <input type="text" name="name" id="name" required>
+        </label>
 
-  <label>Message</label>
-  <textarea name="message" rows="4"></textarea>
+        <label>
+          Email
+          <input type="email" name="email" id="email" required>
+        </label>
 
-  <input type="hidden" id="form-hotel" name="hotel" />
-  <input type="hidden" id="form-room" name="room" />
-  <input type="hidden" id="form-price" name="price" />
+        <label>
+          Phone
+          <input type="tel" name="phone" id="phone">
+        </label>
 
-  <button type="submit">Send Inquiry</button>
-</form>
+        <label>
+          Travel dates
+          <input type="text" name="dates" id="dates" placeholder="e.g. 10 Dec - 17 Dec 2025">
+        </label>
 
+        <label>
+          Message
+          <textarea name="message" id="message" rows="4"></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Send Enquiry</button>
+          <button type="button" id="saveDraft" class="btn outline">Save draft (client-side)</button>
+        </div>
+
+        <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+      </form>
+
+      <p class="small-note">By submitting you agree to our terms.</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Northeast Explorer — All rights reserved</p>
+      <div class="social">
+        <a href="#">Instagram</a> · <a href="#">Facebook</a> · <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

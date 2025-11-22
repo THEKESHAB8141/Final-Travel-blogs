@@ -1,9 +1,6 @@
 [build]
-  publish = "."
-  functions = "netlify/functions"
-  command = ""
+  publish = "public"
+  command = "npm run build || echo 'no build step'"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[dev]
+  functions = "netlify/functions"
