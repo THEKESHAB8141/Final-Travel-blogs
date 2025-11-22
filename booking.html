@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Book Your Trip</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .booking-container{max-width:800px;margin:40px auto;padding:24px;background:#fff;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .booking-container h1{margin-top:0}
+    .form-row{display:flex;gap:12px;margin-bottom:12px}
+    .form-row .col{flex:1}
+    label{display:block;margin-bottom:6px;font-weight:600}
+    input,textarea,select{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px}
+    button{background:#0077cc;color:#fff;padding:10px 16px;border:none;border-radius:6px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="booking-container">
+    <h1>Booking Form</h1>
+    <p>Fill the details below and we'll get back to you.</p>
+
+    <!-- Netlify form: keep name="booking" and include form-name hidden input -->
+    <form name="booking" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you.html">
+      <!-- Hidden inputs required by Netlify -->
+      <input type="hidden" name="form-name" value="booking">
+      <input type="hidden" name="bot-field" value="">
+
+      <div class="form-row">
+        <div class="col">
+          <label for="name">Full name</label>
+          <input id="name" name="name" required placeholder="Your name">
+        </div>
+        <div class="col">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" placeholder="+91-XXXXXXXXXX">
+        </div>
+        <div class="col">
+          <label for="travellers">Number of travellers</label>
+          <select id="travellers" name="travellers">
+            <option>1</option><option>2</option><option>3</option><option>4+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="col">
+          <label for="from">From</label>
+          <input id="from" name="from_date" type="date">
+        </div>
+        <div class="col">
+          <label for="to">To</label>
+          <input id="to" name="to_date" type="date">
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label for="destination">Destination</label>
+        <select id="destination" name="destination">
+          <option>Arunachal</option>
+          <option>Meghalaya</option>
+          <option>Sikkim</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label for="message">Message / Requirements</label>
+        <textarea id="message" name="message" rows="4" placeholder="Any special requests"></textarea>
+      </div>
+
+      <div style="text-align:right;">
+        <button type="submit">Submit Booking</button>
+      </div>
+    </form>
+
+    <p style="margin-top:12px;font-size:0.9em;color:#666">This form uses Netlify Forms — once deployed, submissions will appear in Netlify's Forms dashboard.</p>
+  </div>
+<!-- CLIENT_SIDE_VALIDATION_START -->
+<script>
+(function(){
+  const form = document.querySelector('form[name="booking"]');
+  if(!form) return;
+
+  // Utility functions
+  function el(id){return document.getElementById(id);}
+  function showError(input, msg){
+    let p = input.parentNode.querySelector('.error-msg');
+    if(!p){
+      p = document.createElement('div');
+      p.className = 'error-msg';
+      p.style.color = '#b00020';
+      p.style.fontSize = '0.9em';
+      p.style.marginTop = '6px';
+      input.parentNode.appendChild(p);
+    }
+    p.textContent = msg;
+    input.setAttribute('aria-invalid', 'true');
+  }
+  function clearError(input){
+    let p = input.parentNode.querySelector('.error-msg');
+    if(p) p.textContent = '';
+    input.removeAttribute('aria-invalid');
+  }
+
+  // Basic constraints
+  function validateName(){
+    const input = el('name');
+    clearError(input);
+    const v = (input.value||'').trim();
+    if(v.length < 2) {
+      showError(input, 'Please enter your full name (at least 2 characters).');
+      return false;
+    }
+    return true;
+  }
+  function validateEmail(){
+    const input = el('email');
+    clearError(input);
+    const v = (input.value||'').trim();
+    // simple email regex
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!re.test(v)){
+      showError(input, 'Please enter a valid email address.');
+      return false;
+    }
+    return true;
+  }
+  function validatePhone(){
+    const input = el('phone');
+    clearError(input);
+    const v = (input.value||'').trim();
+    if(v==='') return true; // optional
+    // accept digits, spaces, +, -, parentheses
+    const re = /^[\d\s+\-()]{7,20}$/;
+    if(!re.test(v)){
+      showError(input, 'Please enter a valid phone number.');
+      return false;
+    }
+    return true;
+  }
+  function validateDates(){
+    const f = el('from');
+    const t = el('to');
+    clearError(f); clearError(t);
+    const fv = f.value;
+    const tv = t.value;
+    if(fv && tv){
+      const fd = new Date(fv);
+      const td = new Date(tv);
+      if(fd.toString() === 'Invalid Date' || td.toString() === 'Invalid Date'){
+        showError(f, 'Invalid date.');
+        return false;
+      }
+      if(fd > td){
+        showError(t, 'Return date must be the same or after start date.');
+        return false;
+      }
+    }
+    return true;
+  }
+  function validateTravellers(){
+    const sel = el('travellers');
+    clearError(sel);
+    const v = sel.value || '';
+    const num = parseInt(v) || (v.includes('+')?5:0);
+    if(num <= 0){
+      showError(sel, 'Please select number of travellers.');
+      return false;
+    }
+    return true;
+  }
+  function validateDestination(){
+    const sel = el('destination');
+    clearError(sel);
+    if(!sel.value){
+      showError(sel, 'Please select a destination.');
+      return false;
+    }
+    return true;
+  }
+
+  // on submit
+  form.setAttribute('novalidate','novalidate');
+  form.addEventListener('submit', function(e){
+    // clear all previous errors
+    Array.from(form.elements).forEach(elm => {
+      if(elm.parentNode) {
+        const p = elm.parentNode.querySelector('.error-msg');
+        if(p) p.textContent = '';
+        elm.removeAttribute && elm.removeAttribute('aria-invalid');
+      }
+    });
+
+    const validators = [
+      validateName,
+      validateEmail,
+      validatePhone,
+      validateDates,
+      validateTravellers,
+      validateDestination
+    ];
+    let ok = true;
+    for(const v of validators){
+      try{ if(!v()) ok = false; } catch(err){ ok = false; }
+    }
+
+    // honeypot check (bot-field)
+    const bot = form.querySelector('input[name="bot-field"]');
+    if(bot && bot.value){
+      // silently block bots
+      e.preventDefault();
+      return false;
+    }
+
+    if(!ok){
+      e.preventDefault();
+      // focus first invalid field
+      const first = form.querySelector('[aria-invalid="true"]');
+      if(first) first.focus();
+      return false;
+    }
+
+    // disable submit button to prevent double submits
+    const btn = form.querySelector('button[type="submit"]');
+    if(btn){ btn.disabled = true; btn.textContent = 'Submitting...'; }
+
+    // allow form to submit normally (Netlify will handle it)
+  });
+
+  // real-time validation hooks
+  ['name','email','phone','from','to','travellers','destination'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('input', function(){ 
+      try{
+        // call corresponding validator when typing
+        if(id==='name') validateName();
+        if(id==='email') validateEmail();
+        if(id==='phone') validatePhone();
+        if(id==='from' || id==='to') validateDates();
+        if(id==='travellers') validateTravellers();
+        if(id==='destination') validateDestination();
+      }catch(e){}
+    });
+  });
+
+  // Accessibility: mark required fields visually
+  ['name','email'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el){
+      const lbl = el.parentNode.querySelector('label');
+      if(lbl && lbl.textContent && lbl.textContent.indexOf('*')===-1){
+        lbl.innerHTML = lbl.innerHTML + ' <span aria-hidden="true" style="color:#b00020">*</span>';
+      }
+    }
+  });
+
+})();
+</script>
+<!-- CLIENT_SIDE_VALIDATION_END -->
+<!-- NETLIFY_FUNCTIONS_SCRIPT_START -->
+<script>
+(function(){
+  const form = document.querySelector('form[name="booking"]');
+  if(!form) return;
+
+  // helper to serialize form to object
+  function formToObject(formEl){
+    const data = {};
+    new FormData(formEl).forEach((v,k) => {
+      // handle multiple entries if necessary
+      if(data[k] !== undefined){
+        if(Array.isArray(data[k])) data[k].push(v); else data[k] = [data[k], v];
+      } else {
+        data[k] = v;
+      }
+    });
+    return data;
+  }
+
+  // On submit: send to function, then submit hidden Netlify form to ensure Netlify Forms collects it (fallback if function fails)
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    // basic client-side validation done earlier; assume valid
+    const data = formToObject(form);
+
+    // 1) POST to Netlify Function
+    try {
+      const res = await fetch('/.netlify/functions/booking-handler', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      // optionally check res.ok
+    } catch(err){
+      console.warn('Function call failed', err);
+    }
+
+    // 2) Create an invisible form to let Netlify Forms capture the submission (required for Netlify's Forms UI)
+    try {
+      const nf = document.createElement('form');
+      nf.style.display = 'none';
+      nf.method = 'POST';
+      nf.action = '/';
+      nf.setAttribute('data-netlify', 'true');
+      nf.innerHTML = '<input type="hidden" name="form-name" value="booking">';
+      for(const k in data){
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = k;
+        input.value = data[k];
+        nf.appendChild(input);
+      }
+      document.body.appendChild(nf);
+      nf.submit();
+    } catch(err){
+      // If programmatic Netlify submit fails, fallback to redirecting to thank-you
+      console.warn('Netlify form submit failed', err);
+      window.location.href = '/thank-you.html';
+    }
+  });
+})();
+</script>
+<!-- NETLIFY_FUNCTIONS_SCRIPT_END -->
+</body>
+</html>
